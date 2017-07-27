@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// 导入 angular 路由模块
+import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -9,7 +11,10 @@ import { FooterComponent } from './footer/footer.component';
 import { ContentComponent } from './content/content.component';
 import { StockManagerComponent } from './stock/stock-manager/stock-manager.component';
 import { StarsComponent } from './stars/stars.component';
+import { HomeComponent } from './home/home.component';
 
+import { AppRoutingModule } from './app-routing.module';
+import { StockFormComponent } from './stock/stock-form/stock-form.component'
 
 @NgModule({
   declarations: [
@@ -20,10 +25,13 @@ import { StarsComponent } from './stars/stars.component';
     FooterComponent,
     ContentComponent,
     StockManagerComponent,
-    StarsComponent
+    StarsComponent,
+    HomeComponent,
+    StockFormComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
