@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { StockFormComponent } from './stock/stock-form/stock-form.component'
+import { StockService } from './stock/stock.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { StockFormComponent } from './stock/stock-form/stock-form.component'
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ StockService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
