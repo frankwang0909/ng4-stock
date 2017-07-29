@@ -17,6 +17,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { StockFormComponent } from './stock/stock-form/stock-form.component'
 import { StockService } from './stock/stock.service';
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { StockFilterPipe } from './stock/stock-filter.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,11 +31,14 @@ import { StockService } from './stock/stock.service';
     StockManagerComponent,
     StarsComponent,
     HomeComponent,
-    StockFormComponent
+    StockFormComponent,
+    StockFilterPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [ StockService ],
   bootstrap: [ AppComponent ]
