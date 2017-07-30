@@ -10,27 +10,27 @@
         <label for="stockName" class="col-sm-2 control-label">股票名称</label>
 
         <div class="col-sm-2">
-            <input type="text" class="form-control" id="stockName" placeholder="股票名称">
+            <input type="text" class="form-control" id="stockName" placeholder="股票名称" [value]="stock.name">
         </div>
         </div>
         <div class="form-group">
         <label for="stockPrice" class="col-sm-2 control-label">股票价格</label>
 
         <div class="col-sm-2">
-            <input type="text" class="form-control" id="stockPrice" placeholder="股票价格">
+            <input type="text" class="form-control" id="stockPrice" placeholder="股票价格" [value]="stock.price">
         </div>
         </div>
         <div class="form-group">
-        <label for="stockRating" class="col-sm-2 control-label">股票评级</label>
-        <div class="col-sm-2">
-            <input type="number" class="form-control" id="stockRating" placeholder="">
-        </div>
+            <label for="stockRating" class="col-sm-2 control-label">股票评级</label>
+            <div class="col-sm-2">
+                <app-stars [(rating)]="stock.rating" [readonly]="false"></app-stars>
+            </div>
         </div>
         <div class="form-group">
-        <label for="stockDes" class="col-sm-2 control-label">股票描述</label>
-        <div class="col-sm-4">
-            <textarea type="text" class="form-control" id="stockDes" placeholder="股票描述"></textarea>
-        </div>
+            <label for="stockDes" class="col-sm-2 control-label">股票描述</label>
+            <div class="col-sm-4">
+                <textarea type="text" class="form-control" id="stockDes" placeholder="股票描述" [value]="stock.desc"></textarea>
+            </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">股票类别</label>

@@ -24,6 +24,7 @@ export class StockFormComponent implements OnInit {
     this.router.navigateByUrl('/stock');
   }
   save() {
+    console.log(this.stock)
     this.router.navigateByUrl('/stock');
   }
 }
