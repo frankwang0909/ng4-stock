@@ -38,7 +38,7 @@ import { StockFilterPipe } from './stock/stock-filter.pipe';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule // 响应式表单模板
   ],
   providers: [ StockService ],
   bootstrap: [ AppComponent ]
