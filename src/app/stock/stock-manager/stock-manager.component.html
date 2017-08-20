@@ -21,7 +21,9 @@
           <th>股票评级</th>
           <th>操作</th>
         </tr>
-        <tr *ngFor="let stock of stocks | stockFilter: 'name':keyword">
+        <!-- <tr *ngFor="let stock of stocks | stockFilter: 'name':keyword"> -->
+        <!-- async 异步管道 -->
+        <tr *ngFor="let stock of stocks | async | stockFilter: 'name':keyword">
           <td>{{stock.id}}</td>
           <td>{{stock.name}}</td>
           <td>{{stock.price}}</td>

@@ -11,7 +11,8 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@ang
 })
 export class StockFormComponent implements OnInit {
   formModel: FormGroup;
-  stock: Stock;
+  // 给stock 设置初始值，以避免报错。
+  stock: Stock = new Stock(0, '', 0, 0, '', []);
   categories = ['互联网', '教育', '电商', '社交'];
   constructor(
     private router: Router,
@@ -21,20 +22,38 @@ export class StockFormComponent implements OnInit {
 
   ngOnInit() {
     const stockId = this.routeInfo.snapshot.params['id'];
-    this.stock = this.stockService.getStock(stockId);
-
-    let fb = new FormBuilder();
+    // this.stockService.getStock(stockId);
+    const fb = new FormBuilder();
+    // 初始化为空
     this.formModel = fb.group({
-      name: [this.stock.name, [Validators.required, Validators.minLength(2)]],
-      price: [this.stock.price, Validators.required],
-      desc: [this.stock.desc],
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      price: ['', Validators.required],
+      desc: [''],
       categories: fb.array([
-        new FormControl(this.stock.categories.indexOf(this.categories[0]) !== -1),
-        new FormControl(this.stock.categories.indexOf(this.categories[1]) !== -1),
-        new FormControl(this.stock.categories.indexOf(this.categories[2]) !== -1),
-        new FormControl(this.stock.categories.indexOf(this.categories[3]) !== -1)
+        new FormControl(false),
+        new FormControl(false),
+        new FormControl(false),
+        new FormControl(false)
       ], this.categoriesSelecteValidator)
     })
+    // 订阅这个数据流, 返回的数据赋值给 stock。
+    this.stockService.getStock(stockId).subscribe(
+      data => {
+        this.stock = data;
+        // 更新 formModel 数据
+        this.formModel.reset({
+          name: data.name,
+          price: data.price,
+          desc: data.desc,
+          categories: [
+            data.categories.indexOf(this.categories[0]) !== -1,
+            data.categories.indexOf(this.categories[1]) !== -1,
+            data.categories.indexOf(this.categories[2]) !== -1,
+            data.categories.indexOf(this.categories[3]) !== -1
+          ]
+        })
+      }
+    );
   }
   cancel() {
     this.router.navigateByUrl('/stock');
@@ -46,6 +65,7 @@ export class StockFormComponent implements OnInit {
     for (let i = 0; i < this.categories.length; i++) {
       if (this.formModel.value.categories[i]) {
         categoriesString.push(this.categories[i]);
+        this.router.navigateByUrl('/stock');
       }
     }
     this.formModel.value.categories = categoriesString;
@@ -54,7 +74,7 @@ export class StockFormComponent implements OnInit {
   }
   categoriesSelecteValidator(control: FormArray) {
     let valid = false;
-    control.controls.forEach( control => {
+    control.controls.forEach(control => {
       if (control.value) {
         valid = true;
       }

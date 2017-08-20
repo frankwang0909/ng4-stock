@@ -19,6 +19,7 @@ import { StockService } from './stock/stock.service';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { StockFilterPipe } from './stock/stock-filter.pipe';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -37,8 +38,9 @@ import { StockFilterPipe } from './stock/stock-filter.pipe';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
-    ReactiveFormsModule // 响应式表单模板
+    ReactiveFormsModule, // 响应式表单模块,
+    HttpModule, // Http 模块
+    AppRoutingModule
   ],
   providers: [ StockService ],
   bootstrap: [ AppComponent ]
